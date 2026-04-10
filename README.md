@@ -11,7 +11,7 @@
 ```
 请帮我安装敏感信息检测与可逆脱敏工具：
 
-1. 从 GitHub 下载本项目：https://github.com/{你的用户名}/sensitive-detector
+1. 从 GitHub 下载本项目：https://github.com/R3s3arcmSureness/sensitive-detector
 
 2. 解压到 ./工具/敏感信息检测/ 目录
 
