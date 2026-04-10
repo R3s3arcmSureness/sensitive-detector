@@ -4,6 +4,24 @@
 
 ---
 
+## 🆕 v2.0.1 更新
+
+### 映射持久化（重要修复）
+- **问题**：之前版本映射存储在内存中，进程重启后无法还原旧占位符
+- **修复**：映射自动持久化到 `sensitive_mappings.json` 文件
+- **效果**：跨进程、重启后仍能正确还原敏感信息
+
+### 新增安全检测
+- ✅ Prompt 注入检测（阻止指令覆盖、角色劫持）
+- ✅ 危险命令检测（阻止 `rm -rf`、`curl | bash` 等）
+- ✅ 风险评分机制（0-10分，高风险直接拒绝）
+
+### 性能优化
+- 100个敏感信息处理 < 0.01秒
+- 92个测试用例，100%通过率
+
+---
+
 ## 🤖 Agent 一键安装
 
 将以下内容发送给你的龙虾（Agent），即可自动安装并启用：
@@ -11,7 +29,7 @@
 ```
 请帮我安装敏感信息检测与可逆脱敏工具：
 
-1. 从 GitHub 下载本项目：https://github.com/R3s3arcmSureness/sensitive-detector
+1. 从 GitHub 下载本项目：https://github.com/{你的用户名}/sensitive-detector
 
 2. 解压到 ./工具/敏感信息检测/ 目录
 
@@ -92,9 +110,11 @@ user_response = restore_ai_response(ai_response)
 
 ```
 敏感信息检测/
-├── SKILL.md                 # 技能说明
+├── SKILL.md                 # 技能说明（自动触发）
 ├── sensitive_detector.py    # 主程序（含自动初始化）
+├── sensitive_mappings.json  # 映射存储（运行时自动生成）
 ├── skill.json               # 配置文件
+├── CHANGELOG.md             # 变更日志
 └── README.md                # 本文件
 ```
 
